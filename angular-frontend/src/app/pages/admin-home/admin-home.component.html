@@ -1,3 +1,10 @@
-<p>
-  admin-home works!
-</p>
+<nb-card>
+  <div class="container">
+    <div class="row ml-2 mt-2">
+      <h3>Lista de usuarios</h3>
+    </div>
+    <div class="row ml-2 mt-2" *ngFor="let users_data of users_list">
+      {{ users_data.email }}
+    </div>
+  </div>
+</nb-card>

@@ -3,6 +3,7 @@ const userSchema = require('./auth.model');
 
 userSchema.statics = {
     login: function (query, cb) {
+        console.log('query', query);
         this.find(query, cb);
     }
 }

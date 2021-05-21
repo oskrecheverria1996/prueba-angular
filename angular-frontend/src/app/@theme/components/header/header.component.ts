@@ -48,13 +48,8 @@ export class HeaderComponent implements OnInit {
         self.current_payload = token.getValue();
       }
     });
-    
-    // $(document).ready(function () {
-    //   $('nb-context-menu').css('border', 'none');
-    //   self.fnValidateScreenSize();
-    // });
-    this.menuService.onItemClick().subscribe((response) => {
-      this.onItemSelection(response);
+    self.menuService.onItemClick().subscribe((response) => {
+      self.onItemSelection(response);
     });
     self.utilitiesService.dataChange.subscribe((data) => {
       self.data_received = data;
