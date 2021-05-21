@@ -1,0 +1,5 @@
+.DS_Store
+angular-frontend/e2e/
+angular-frontend/node_modules
+**angular-frontend/node_modules/@nebular
+backend/node_modules

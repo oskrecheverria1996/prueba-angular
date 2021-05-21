@@ -1,0 +1,95 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes';
+
+@include nb-install-component() {
+
+    // h1 {
+    //     font-weight: 500;
+    //     font-size: 2em;
+    // }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .font_family_roboto {
+        font-family: 'Roboto';
+    }
+
+    #input-email:focus {
+        border-color:  #06A7E2;
+    }
+
+    #input-password:focus {
+        border-color:  #06A7E2;
+    }
+
+    #pgp-checkbox_remember_me {
+        display: block;
+
+        .customised-control {
+            .customised-control-input input[type="checkbox"]:checked {
+                border-color:  #06A7E2;
+            }
+        }
+        
+    }
+
+    .pace-progress {
+        background:  #06A7E2;
+    }
+
+    /* The container */
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+      
+    /* Hide the browser's default checkbox */
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+      
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+        background-color: #06A7E2;
+        border-radius: 50%;
+    }
+
+    .container input > .checkmark {
+        background-color: #06A7E2;
+        border-radius: 50%;
+    }
+    
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .error-message {
+        color: #b33040;
+        margin-top: .5rem;
+        margin-bottom: 1rem;
+        font-size: .8rem;
+        line-height: 1.25;
+        font-weight: 400;
+        font-family: 'Roboto';
+    }
+    
+}
