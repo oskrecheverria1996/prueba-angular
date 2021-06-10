@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const usersSchema = require('./../auth/auth.model');
+const usersSchema = require('../models/auth.model');
 
 usersSchema.statics = {
     getUsersList: function (query, cb) {

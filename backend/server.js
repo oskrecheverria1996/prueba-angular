@@ -1,9 +1,9 @@
 'use strict'
+// Imports
 const express = require('express');
 const cors = require('cors');
-const authModel = require('./auth/auth.logic')
-const authRoutes = require('./auth/auth.routes');
-const homeRoutes = require('./home/home.routes');
+const authRoutes = require('./routes/auth.routes');
+const homeRoutes = require('./routes/home.routes');
 const properties = require('./config/properties');
 const DB = require('./config/db');
 const app = express();
@@ -26,4 +26,8 @@ app.use('/api', router);
 authRoutes(router);
 homeRoutes(router);
 app.use(router);
-app.listen(properties.PORT, () => console.log(`server running on port ${properties.PORT}`));
+
+// Start server
+app.listen(properties.PORT, () => {
+    console.log(`server running on port ${properties.PORT}`)
+});

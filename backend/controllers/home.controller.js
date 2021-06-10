@@ -1,4 +1,4 @@
-const homeLogic = require('./home.logic');
+const homeLogic = require('../logic/home.logic');
 const jwt = require('jsonwebtoken');
 
 exports.getUsersList = (req, res) => {

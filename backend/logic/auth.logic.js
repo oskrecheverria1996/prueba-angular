@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const userSchema = require('./auth.model');
+const userSchema = require('../models/auth.model');
 
 userSchema.statics = {
     login: function (query, cb) {
-        console.log('query', query);
         this.find(query, cb);
     }
 }

@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 const dbURL = require('./properties').DB;
 
 module.exports = ()=> {
-    mongoose.connect(dbURL, {useNewUrlParser: true})
+    mongoose.connect(dbURL, 
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: true 
+    })
     .then(()=> console.log(`db connected on ${dbURL}`))
     .catch(err => console.log(`Error ${err}`))
 

@@ -1,4 +1,4 @@
-const User = require('./auth.logic');
+const User = require('../logic/auth.logic');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456'
