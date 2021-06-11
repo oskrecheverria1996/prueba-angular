@@ -9,7 +9,8 @@ tasksSchema.statics = {
 
 tasksSchema.statics = {
     createTask: function (body, cb) {
-        this.save(body, cb);
+        const task = new this(body);
+        task.save(cb);
     }
 }
 
