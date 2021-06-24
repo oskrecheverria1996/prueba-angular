@@ -4,7 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
 const homeRoutes = require('./routes/home.routes');
-const tasksRoutes = require('./routes/tasks.routes');
+const peliculasRoutes = require('./routes/peliculas.routes');
+const salasRoutes = require('./routes/salas.routes');
 const properties = require('./config/properties');
 const DB = require('./config/db');
 const app = express();
@@ -26,7 +27,8 @@ app.use(cors());
 app.use('/api', router);
 authRoutes(router);
 homeRoutes(router);
-tasksRoutes(router);
+peliculasRoutes(router);
+salasRoutes(router);
 app.use(router);
 
 // Start server

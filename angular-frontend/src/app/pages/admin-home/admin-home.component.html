@@ -1,10 +1,48 @@
 <nb-card>
   <div class="container">
-    <div class="row ml-2 mt-2">
-      <h3>Lista de usuarios</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-striped">
+          <thead>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Imagen</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pelicula of listado_peliculas">
+              <td>{{ pelicula.codigo }}</td>
+              <td>{{ pelicula.nombre }}</td>
+              <td>{{ pelicula.descripcion }}</td>
+              <td></td>
+              <td>
+                <button nbButton (click)="mostrarListaSalas(pelicula)">Asignar sala</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-3" *ngIf="pelicula_seleccionada">
+        <table class="table">
+          <thead>
+            <th>Numero de sala</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sala of listado_salas">
+              <td>{{sala.nombre}}</td>
+              <td>
+                <button nbButton (click)="fnAsignarSalaPelicula(pelicula_seleccionada, sala)">Asignar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- <div class="row ml-2 mt-2">
+      <h3>Lista de peliculas</h3>
     </div>
     <div class="row ml-2 mt-2" *ngFor="let users_data of users_list">
-      {{ users_data.email }}
-    </div>
+      {{ users_data | json }}
+    </div> -->
   </div>
 </nb-card>
