@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nb-card class="font_family_roboto" size="large" nbSpinnerStatus="info">
+        <nb-card-header class="font_family_roboto">Lista de salas</nb-card-header>
+        <nb-list>
+          <nb-list-item *ngFor="let sala of listado_salas">
+            <div class="row" style="cursor: pointer;" (click)="fnAsignarSalaPelicula(pelicula_seleccionada, sala)">
+              <div class="col-10">
+                {{ sala.nombre }}
+              </div>
+              <div class="col-2">
+                <i class="fas fa-check" style="color: greenyellow;"></i>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+    </div>
+  </div>
+</div>

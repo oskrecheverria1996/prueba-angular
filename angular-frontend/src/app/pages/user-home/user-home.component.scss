@@ -1,3 +1,6 @@
-nb-card {
-    height: 9rem;
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes';
+
+button {
+    cursor: pointer !important;
 }

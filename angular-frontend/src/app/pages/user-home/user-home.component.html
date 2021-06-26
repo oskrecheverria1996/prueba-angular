@@ -1,25 +1,32 @@
-<div class="row mt-2">
-  <div class="col-12">
-    <nb-card>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-10">
-            <input nbInput [(ngModel)]="data_header" #groupName="ngModel" name="input_data_header" autofocus type="text"
-                class="form-control" placeholder="Envie mensaje al header" style="height: 45px;">
-          </div>
-          <div class="col-2">
-            <button nbButton (click)="fnSendMessageHeader()">Enviar mensaje a header</button>
-          </div>
-        </div>
+<nb-card style="height: 81vh;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <th style="width: 270px;" class="text-center">Nombre</th>
+            <th style="width: 270px;" class="text-center">Descripcion</th>
+            <th style="width: 100px;" class="text-center">Sala</th>
+            <th class="text-center">Imagen</th>
+            <th style="width: 156px;"></th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pelicula of listado_peliculas">
+              <td class="text-center">{{ pelicula.nombre }}</td>
+              <td>{{ pelicula.descripcion }}</td>
+              <td class="text-center">{{ pelicula.sala }}</td>
+              <td class="text-center">
+                <img [src]="'data:image/jpg;base64,' + pelicula.imagen" style="width: 34% !important;">
+              </td>
+              <td>
+                <button nbButton (click)="fnShowHorarios(pelicula)" nbTooltip="Horarios disponibles" nbTooltipPlacement="top">
+                  <i class="far fa-calendar-check"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </nb-card>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-    <app-component-a (mensaje)="fnEnviarMensaje($event)"></app-component-a>
-  </div>
-  <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-    <app-component-b [data]="data_message"></app-component-b>
-  </div>
-</div>
+</nb-card>

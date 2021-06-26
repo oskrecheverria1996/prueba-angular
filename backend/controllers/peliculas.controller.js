@@ -2,7 +2,6 @@ const peliculasLogic = require('../logic/peliculas.logic');
 const jwt = require('jsonwebtoken');
 
 exports.getPeliculas = (req, res) => {
-    console.log('req', req.headers['authorization'])
     var token = req.headers['authorization'];
     if(!token){
         res.status(401).send({
@@ -48,7 +47,6 @@ exports.crearPelicula = (req, res) => {
 
 exports.asignarSalaPelicula = (req, res) => {
     var token = req.headers['authorization'];
-    console.log(req.body);
     if(!token){
         res.status(401).send({
             error: "Falta autorizacion"
@@ -61,7 +59,7 @@ exports.asignarSalaPelicula = (req, res) => {
             const pelicula = req.body;
             const id = pelicula._id;
             peliculasLogic.findByIdAndUpdate(id, pelicula, (err, pelicula) => {
-                res.status(204).send({message: 'Se ha asignado una sala a la pelicula'});
+                res.status(204).send();
             })
           }
     })

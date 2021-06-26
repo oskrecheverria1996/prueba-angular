@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nb-card class="font_family_roboto pgp-card_content" size="large" nbSpinnerStatus="info">
+        <nb-card-header class="font_family_roboto">Horarios de disponibilidad</nb-card-header>
+        <nb-list>
+          <nb-list-item *ngFor="let horario of pelicula_seleccionada?.horarios">
+            {{ horario | date:"fullDate" }}
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+    </div>
+  </div>
+</div>

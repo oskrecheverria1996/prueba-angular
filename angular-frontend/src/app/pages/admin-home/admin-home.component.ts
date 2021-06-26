@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { NbDialogService } from '@nebular/theme';
 import { PeliculasService } from "../../shared/api/services/peliculas.service";
 import { UtilitiesService } from "../../shared/api/services/utilities.service";
+import { HorariosComponent } from "./horarios/horarios.component";
+import { SalasComponent } from "./salas/salas.component";
 
 @Component({
   selector: 'app-admin-home',
@@ -13,6 +16,8 @@ export class AdminHomeComponent implements OnInit {
 
   user: any = {};
   pelicula_seleccionada: any = null;
+  mostrar_horarios: any = false;
+  mostrar_salas: any = false;
   listado_peliculas: any = [];
   listado_salas: any = [];
   current_payload: any = null;
@@ -22,6 +27,7 @@ export class AdminHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private peliculasService: PeliculasService,
     private utilitiesService: UtilitiesService,
+    private dialogService: NbDialogService,
     private authService: NbAuthService,) { }
 
   ngOnInit() {
@@ -58,39 +64,32 @@ export class AdminHomeComponent implements OnInit {
     });
   }
 
-  mostrarListaSalas(pelicula) {
-    this.pelicula_seleccionada = pelicula;
-  }
-
-  fnAsignarSalaPelicula(pelicula_seleccionada, sala_seleccionada) {
-    pelicula_seleccionada['sala'] = sala_seleccionada;
-    this.peliculasService.fnSetAsignarSalaPelicula(this.current_payload, pelicula_seleccionada).subscribe(r => {
-      if (r.status == 204) {
-        this.pelicula_seleccionada = null;
-        this.fnGetPeliculas(this.current_payload);
-        this.utilitiesService.showToast('top-right', 'success', 'Se ha actualizado la sala de la pelicula');
-      }
-      if (r.status == 206) {
-        // this.submitted = false;
-        // let error = this.utilitiesService.fnSetErrors(null, r.body.message)[0];
-        // this.utilitiesService.showToast('top-right', 'warning', error);+
-      }
-    }, err => {
-      if (err.status == 500) {
-        // this.utilitiesService.showToast('top-right', 'danger', '', 'fas fa-radiation-alt');
-        // this.submitted = false;
-      }
-      if (err.status == 409) {
-        // this.submitted = false;
-        // let error = this.utilitiesService.fnSetErrors(null, err.error.message)[0];
-        // this.utilitiesService.showToast('top-right', 'warning', error);
-      }
-    });
-  }
-
   fnAgregarSala(sala_seleccionada) {
     this.pelicula_seleccionada['sala'] = sala_seleccionada;
   }
  
+  fnShowHorarios(pelicula_seleccionada) {
+    let object_send = {};
+    object_send['pelicula_seleccionada'] = JSON.parse(JSON.stringify(pelicula_seleccionada));
+    this.dialogService.open(HorariosComponent, { context: object_send }).onClose.subscribe((res) => {
+      // if(res) {
+      //   this.fnGetCompetitorsOffers(this.current_payload);
+      //   this.search_input = '';
+      // }
+    });
+  }
+ 
+  fnShowSalas(pelicula_seleccionada) {
+    let object_send = {};
+    object_send['listado_salas'] = JSON.parse(JSON.stringify(this.listado_salas));
+    object_send['pelicula_seleccionada'] = JSON.parse(JSON.stringify(pelicula_seleccionada));
+    this.dialogService.open(SalasComponent, { context: object_send }).onClose.subscribe((res) => {
+      if(res) {
+        this.fnGetSalas(this.current_payload);
+        this.fnGetPeliculas(this.current_payload);
+      }
+    });
+  }
+  
 
 }

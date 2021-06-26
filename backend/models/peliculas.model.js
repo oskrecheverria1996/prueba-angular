@@ -25,8 +25,7 @@ const peliculasSchema = new Schema({
         type: Array,
     },
     sala: {
-        type: Schema.Types.ObjectId, 
-        ref: "salas"
+        type: String,
     }
 });
 

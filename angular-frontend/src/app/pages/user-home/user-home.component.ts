@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { PeliculasService } from "../../shared/api/services/peliculas.service";
 import { UtilitiesService } from "../../shared/api/services/utilities.service";
+import { HorariosComponent } from "./horarios/horarios.component";
+import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-user-home',
@@ -11,13 +14,15 @@ import { UtilitiesService } from "../../shared/api/services/utilities.service";
 export class UserHomeComponent implements OnInit {
 
   user: any = {};
+  pelicula_seleccionada: any = null;
+  listado_peliculas: any = [];
   current_payload: any = null;
-  data_message: any = ''; 
-  data_header: any = ''; 
 
-  constructor(public router: Router,
+  constructor( public router: Router,
     private route: ActivatedRoute,
+    private peliculasService: PeliculasService,
     private utilitiesService: UtilitiesService,
+    private dialogService: NbDialogService,
     private authService: NbAuthService,) { }
 
   ngOnInit() {
@@ -30,16 +35,30 @@ export class UserHomeComponent implements OnInit {
         if(self.user['role'] != 'user') {
           self.router.navigateByUrl('auth/login');
         }
+        self.fnGetPeliculas(self.current_payload);
       }
     });
   }
 
-  fnEnviarMensaje(event) {
-    this.data_message = event;
+  fnGetPeliculas(current_payload) {
+    const self = this;
+    self.peliculasService.fnGetPeliculas(current_payload).subscribe(r => {
+      if (r.status == 200) {
+        self.listado_peliculas = JSON.parse(JSON.stringify(r.body));
+      }
+    });
   }
 
-  fnSendMessageHeader() {
-    this.utilitiesService.fnSendMessage(this.data_header);
+  fnShowHorarios(pelicula_seleccionada) {
+    let object_send = {};
+    object_send['pelicula_seleccionada'] = JSON.parse(JSON.stringify(pelicula_seleccionada));
+    this.dialogService.open(HorariosComponent, { context: object_send }).onClose.subscribe((res) => {
+      // if(res) {
+      //   this.fnGetCompetitorsOffers(this.current_payload);
+      //   this.search_input = '';
+      // }
+    });
   }
+
 
 }

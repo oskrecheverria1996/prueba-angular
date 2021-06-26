@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
 })
 
 const bodyParser = require('body-parser');
-const bodyParserJSON = bodyParser.json();
-const bodyParserURLEncoded = bodyParser.urlencoded({extended: true});
+const bodyParserJSON = bodyParser.json({limit: '50mb'});
+const bodyParserURLEncoded = bodyParser.urlencoded({extended: true, limit: '50mb', parameterLimit: 100000});
 
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);

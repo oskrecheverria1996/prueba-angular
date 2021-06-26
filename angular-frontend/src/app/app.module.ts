@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 // JQuery Import
 import * as $ from 'jquery';
 import { ThemeModule } from './@theme/theme.module';
-import { NbToastrModule } from '@nebular/theme';
+import { NbToastrModule, NbDialogModule, NbTooltipModule } from '@nebular/theme';
 // import { RoundNumberPipe } from './shared/pipes/round-number.pipe';
 
 const formSetting: any = {
@@ -97,6 +97,8 @@ export const defaultSettings: any = {
     NbToastrModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    NbTooltipModule,
+    NbDialogModule.forRoot(),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({
